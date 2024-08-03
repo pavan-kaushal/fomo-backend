@@ -8,7 +8,7 @@ import { CoinHistory } from '../models/coin-history.model';
 export const scheduleCronToFetchCoinDataFromSource = () => {
     cron.schedule(environmentConfig.COIN_PRICE_CRON_CONFIG, async () => {
         console.log('Starting Cron for Fetching Coin Price');
-        // await fetchCoinDataFromSource();
+        await fetchCoinDataFromSource();
         console.log("Coin prices updated")
         socket.emitData('priceUpdates', null)
     }, {
@@ -37,6 +37,5 @@ export const coinHistory  = async (coin: Types.ObjectId) => {
         ...doc,
         change: i>0 ? ((doc[i].price - doc[i-1].price)/(doc[i-1].price || doc[i].price))*100 : 0
       }
-      
     })
 }
