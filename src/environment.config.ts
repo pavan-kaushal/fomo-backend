@@ -10,6 +10,7 @@ interface IConfig {
     coinCount: any,
     apiKey: any,
     COIN_PRICE_CRON_CONFIG: any,
+    socketPort: any,
 }
 
 class Config implements IConfig {
@@ -24,6 +25,7 @@ class Config implements IConfig {
     readonly coinCount = process.env.coinCount;
     readonly apiKey = process.env.apiKey;
     readonly COIN_PRICE_CRON_CONFIG = process.env.COIN_PRICE_CRON_CONFIG;
+    readonly socketPort = process.env.socketPort;
 
     public get config(): IConfig{
         return this;
