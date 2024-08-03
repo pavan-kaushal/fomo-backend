@@ -32,7 +32,7 @@ export const coinHistory  = async (coin: Types.ObjectId) => {
     ])
     for(let i=0; i<data.length; i++){
       const doc = data[i]
-      doc["change"] = i>0 ? ((doc[i].price - doc[i-1].price)/(doc[i-1].price || doc[i].price))*100 : 0
+      doc["change"] = i>0 ? ((data[i].price - data[i-1].price)/(data[i-1].price || data[i].price))*100 : 0
     }
     return data
 }
