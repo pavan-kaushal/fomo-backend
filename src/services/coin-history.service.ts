@@ -30,39 +30,13 @@ export const coinHistory  = async (coin: Types.ObjectId) => {
             $sort: {
                 _id: -1
             }
-        }, {
-            $setWindowFields: {
-              output: {
-                prevPrice: {
-                  $shift: {
-                    output: "$price",
-                    by: -1,
-                    default: null
-                  }
-                }
-              }
-            }
-        }, {
-            $addFields: {
-              change: {
-                $cond: {
-                  if: { $ne: ["$prevPrice", null] },
-                  then: {
-                    $multiply: [
-                      {
-                        $divide: [
-                          { $subtract: ["$price", "$prevPrice"] },
-                          "$prevPrice"
-                        ]
-                      },
-                      100
-                    ]
-                  },
-                  else: null
-                }
-              }
-            }
-          }
+        }
     ])
-    return data
+    return data.map((doc, i) => {
+      return {
+        ...doc,
+        ...(i>0 ? {change: ((doc[i].price - doc[i-1].price)/(doc[i-1].price || doc[i].price))*100} : {})
+      }
+      
+    })
 }
