@@ -7,11 +7,11 @@ interface IConfig {
     dbsource: any,
     timezone: any,
     currency: any,
-    coinCount: any,
+    coinCount: number,
     apiKey: any,
     COIN_PRICE_CRON_CONFIG: any,
-    socketPort: any,
-    numberOfRecords: any,
+    socketPort: number,
+    numberOfRecords: number,
 }
 
 class Config implements IConfig {
