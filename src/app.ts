@@ -19,6 +19,7 @@ class App extends Server {
     }
 
     private corsPolicy() {
+        console.log(config)
         express.Router()
         this.app.use((req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");

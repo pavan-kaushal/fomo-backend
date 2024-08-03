@@ -8,7 +8,7 @@ export class CoinController {
     @Get('')
     async getCoins(req: Request, res: Response){
         try {
-            let coins = await coinList()
+            const coins = await coinList()
             return responseMiddleware(res, true, 'success', coins);
         } catch (error: any) {
             return responseMiddleware(res, false, error.message);

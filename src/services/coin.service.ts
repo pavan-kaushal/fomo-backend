@@ -33,7 +33,8 @@ export const fetchCoinDataFromSource = async (ids?:string[]) => {
             await CoinHistory.create({
                 coin: coin?._id,
                 time: now,
-                price: coin?.latestPrice 
+                price: coin?.latestPrice,
+                dateString: now.toISOString().split('T')[0]
             })
         }
     } catch (error) {

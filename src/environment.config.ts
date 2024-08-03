@@ -1,5 +1,5 @@
 interface IConfig {
-    port: any,
+    port: number,
     dbhost: any,
     dbusername: any,
     dbpassword: any,
@@ -11,10 +11,11 @@ interface IConfig {
     apiKey: any,
     COIN_PRICE_CRON_CONFIG: any,
     socketPort: any,
+    numberOfRecords: any,
 }
 
 class Config implements IConfig {
-    readonly port = process.env.PORT;
+    readonly port = this.convertToNumber(process.env.PORT);
     readonly dbhost = process.env.dbhost;
     readonly dbusername = process.env.dbusername;
     readonly dbpassword = process.env.dbpassword;
@@ -22,13 +23,18 @@ class Config implements IConfig {
     readonly dbsource = process.env.dbsource;
     readonly timezone = process.env.timezone;
     readonly currency = process.env.currency;
-    readonly coinCount = process.env.coinCount;
+    readonly coinCount = this.convertToNumber(process.env.coinCount);
     readonly apiKey = process.env.apiKey;
     readonly COIN_PRICE_CRON_CONFIG = process.env.COIN_PRICE_CRON_CONFIG;
-    readonly socketPort = process.env.socketPort;
+    readonly socketPort = this.convertToNumber(process.env.socketPort);
+    readonly numberOfRecords = this.convertToNumber(process.env.numberOfRecords);
 
     public get config(): IConfig{
         return this;
+    }
+
+    private convertToNumber(val: string) {
+        return Number(val).valueOf()
     }
 }
 
