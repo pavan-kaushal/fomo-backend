@@ -17,12 +17,10 @@ export const scheduleCronToFetchCoinDataFromSource = () => {
 }
 
 export const coinHistory  = async (coin: Types.ObjectId) => {
-    const now = new Date()
     const data = await CoinHistory.aggregate([
         {
             $match: {
                 coin,
-                time: {$lte: now}
             }
         }, {
             $limit: environmentConfig.numberOfRecords
