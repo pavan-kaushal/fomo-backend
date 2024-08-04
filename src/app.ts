@@ -33,6 +33,12 @@ class App extends Server {
         this.app.enable('trust proxy');
         this.app.use(express.json({ limit: '1024mb' }));
         this.app.use(express.urlencoded({ extended: false }));
+        this.app.use((req, res, next) => {
+            res.on('finish', () => {
+                console.log(`${req.method} ${req.path} ${res.statusCode}`);
+            });
+            next();
+          });
     }
 
     async connectDb() {
