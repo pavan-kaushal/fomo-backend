@@ -9,7 +9,6 @@ import { SubCategoryController } from './controllers/sub-category.controller';
 
 class App extends Server {
     port = config.port
-    jwtEscapeUrls = ['/auth/signin','/auth/signup'];
 
     constructor(){
         super();
