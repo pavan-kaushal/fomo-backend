@@ -53,7 +53,7 @@ class CategoryService {
                 $group: {
                     _id: "$category",
                     subCategories: {
-                        $push: "$$ROOT"
+                        $sum: 1
                     }
                 }
             }, {
