@@ -3,9 +3,9 @@ import { Server } from '@overnightjs/core';
 import config from "./environment.config";
 import mongoose from 'mongoose';
 import * as express from 'express';
-import { CoinController } from './controllers/coin.controller';
-import { CoinHistoryController } from './controllers/coin-history.controller';
-import { scheduleCronToFetchCoinDataFromSource } from './services/coin-history.service';
+import { CourseController } from './controllers/course.controller';
+import { CategoryController } from './controllers/category.controller';
+import { SubCategoryController } from './controllers/sub-category.controller';
 
 class App extends Server {
     port = config.port
@@ -56,22 +56,18 @@ class App extends Server {
             mongoose.connection.on('error', () => { console.log('Db connection error'); });
             mongoose.set('strictQuery', true);
             await mongoose.connect(dbUrl,{}).then(() => {
-                this.initializeCrons()
                 this.loadControllers();
             });
         } catch (err) {
             console.log('Error while db connection ' + JSON.stringify(err));
         }
     }
-
-    initializeCrons() {
-        scheduleCronToFetchCoinDataFromSource()
-    }
     
     loadControllers() {
         super.addControllers([
-            new CoinController(),
-            new CoinHistoryController(),
+            new CourseController(),
+            new CategoryController(),
+            new SubCategoryController(),
         ])
     }
 

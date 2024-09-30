@@ -6,12 +6,6 @@ interface IConfig {
     dbname: string,
     dbsource: string,
     timezone: string,
-    currency: string,
-    coinCount: number,
-    apiKey: string,
-    COIN_PRICE_CRON_CONFIG: string,
-    socketPort: number,
-    numberOfRecords: number,
 }
 
 class Config implements IConfig {
@@ -22,12 +16,6 @@ class Config implements IConfig {
     readonly dbname = process.env.dbname ;
     readonly dbsource = process.env.dbsource;
     readonly timezone = process.env.timezone;
-    readonly currency = process.env.currency;
-    readonly coinCount = this.convertToNumber(process.env.coinCount);
-    readonly apiKey = process.env.apiKey;
-    readonly COIN_PRICE_CRON_CONFIG = process.env.COIN_PRICE_CRON_CONFIG;
-    readonly socketPort = this.convertToNumber(process.env.socketPort);
-    readonly numberOfRecords = this.convertToNumber(process.env.numberOfRecords);
 
     public get config(): IConfig{
         return this;
