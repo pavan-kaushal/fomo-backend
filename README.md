@@ -6,4 +6,4 @@
 
  - run "npm start" to make the backend go live
  
- - the query mentioned in the task has been added in the ```category.controller.ts``` file in the 'subCategoryCount' endpoint
+ - the query mentioned in the task has been added in the ```category.controller.ts``` file in the ```'subCategoryCount'``` endpoint
