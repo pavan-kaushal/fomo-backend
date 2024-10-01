@@ -22,11 +22,11 @@ class CourseService {
         })).map(id => id.toString()))
 
         const errors = []
-        if(categories.find(id => existingCategories.has(id.toString()))){
+        if(categories.find(id => !existingCategories.has(id.toString()))){
             errors.push("Invalid Categories Found")
         }
 
-        if(subCategories.find(id => existingSubCategories.has(id.toString()))){
+        if(subCategories.find(id => !existingSubCategories.has(id.toString()))){
             errors.push("Invalid SubCategories Found")
         }
         
